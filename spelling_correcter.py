@@ -7,8 +7,8 @@ def tokens(text):
     """
     return re.findall('[a-z]+', text.lower()) 
 
-with open('E://big.txt', 'r') as f:
-    WORDS = tokens(f.read())
+# with open('E://big.txt', 'r') as f:
+#     WORDS = tokens(f.read())
 
 WORD_COUNTS = collections.Counter(WORDS)
 
@@ -56,19 +56,19 @@ def edits2(word):
     """
     return {e2 for e1 in edits1(word) for e2 in edits1(e1)}
     
-    
+
+def candidates(word):
+    return  (known(edits0(word)) or
+                   known(edits1(word)) or
+                   known(edits2(word)) or
+                   {word}) 
 def correct(word):
     """
     Get the best correct spelling for the input word
     """
     # Priority is for edit distance 0, then 1, then 2
     # else defaults to the input word itself.
-    candidates =  (known(edits0(word)) or
-                   known(edits1(word)) or
-                   known(edits2(word)) or
-                   {word})
-
-    return max(candidates, key=WORD_COUNTS.get)
+    return max(candidates(word), key=WORD_COUNTS.get)
 
 def correct_match(match):
     """
