@@ -1,1 +1,1 @@
-from .spelling_correcter import candidates
+from .spelling_correcter import SpellingCorrecter
