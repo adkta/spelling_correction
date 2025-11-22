@@ -1,3 +1,5 @@
+#BASED ON Peter Norvig's [How to write a Spelling Corrector](http://norvig.com/spell-correct.html)
+
 # -word-
 利用文本分析算法和Python脚本，自动纠正word中的英语单词拼写错误
 
